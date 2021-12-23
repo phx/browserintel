@@ -48,3 +48,7 @@ In order to run on MacOS, you will have to right-click on `tools/hackbrowserdata
 This will actually run it and store results from your local machine probably in your home directory under `results`.
 
 You can then just `rm -rf ~/results`, and run the bash script normally without the binary providing any additional difficulty.
+
+### Troubleshooting
+
+For troubleshooting, please submit an issue.
