@@ -11,3 +11,4 @@ backup
 backup/*
 venv
 venv/*
+*.DS_Store
