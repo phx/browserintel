@@ -1,0 +1,13 @@
+*.log
+*.sqlite
+*.csv
+*sqlite*
+loot
+loot/*
+Login Data
+Cookies
+History
+backup
+backup/*
+venv
+venv/*
