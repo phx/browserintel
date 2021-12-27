@@ -1,8 +1,9 @@
+![Platform: ALL](https://img.shields.io/badge/platform-ALL-green)
+![Dependencies: Python3](https://img.shields.io/badge/dependencies-Python3-blue)
+![Version: Latest](https://img.shields.io/badge/version-latest-green)
+![Follow @rubynorails on Twitter](https://img.shields.io/twitter/follow/rubynorails?label=follow&style=social)
+
 # browserintel
-
-**Dependencies:**
-
-- Python3
 
 This entire suite of utilities is designed to be run from the `browserintel.py` script, thus it requires a working Python3 environment with native libraries (it is untested with native Windows Python or Git-bash).
 
