@@ -55,6 +55,11 @@ This will actually run it and store results from your local machine probably in 
 
 You can then just `rm -rf ~/results`, and run the bash script normally without the binary providing any additional difficulty.
 
+### To-Do:
+
+- [Potentially] add support for additional browsers
+- Add local support for more architectures
+
 ### Troubleshooting
 
 For troubleshooting, please submit an issue.
