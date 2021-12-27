@@ -89,6 +89,7 @@ class Info(Platform):
 		mozilla_profiles = []
 		profiles = {}
 		profile_list = []
+		directories = [directory for directory in directories if directory]
 		for directory in directories:
 			if is_profile:
 				profile = directory
