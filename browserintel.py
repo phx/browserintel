@@ -173,6 +173,8 @@ if __name__ == '__main__':
 		# installed_browsers = info.get_browser()
 		# profiles = info.get_profiles(installed_browsers)
 		profile_dirs = info.get_profiles(automatic=True)
+		if info.arch == 'Windows':
+			sys.exit()
 
 	numprofiles = 0
 	for _, v in profile_dirs.items():

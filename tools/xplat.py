@@ -169,6 +169,7 @@ class Info(Platform):
 			for _, i in v.items():
 				if not i:
 					del v
+		print(browser_dict)
 		existing_browser_paths = self.get_existing_paths(directories)
 		if listbrowsers:
 			return existing_browser_paths   # list
