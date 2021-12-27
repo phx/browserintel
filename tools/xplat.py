@@ -81,7 +81,7 @@ class Info(Platform):
 
 	def get_profiles(self, directories=None, is_profile=None, automatic=False, chrome=False, mozilla=False, most_likely=False, getlist=False):
 		if automatic:
-			directories = self.get_browser(listbrowsers=True)
+			directories = [directory for directory in self.get_browser(listbrowsers=True) if directory]
 		if most_likely:
 			return self.get_most_likely_subdir(directories=directories)    # str
 		chrome_profiles = []
