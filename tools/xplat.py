@@ -80,7 +80,6 @@ class Info(Platform):
 		for path in paths:
 			if os.path.exists(path):
 				existing_paths.append(path)
-		print(f"DEBUG: existing_paths: {existing_paths}")
 		return existing_paths
 
 	def get_profiles(self, directories=None, is_profile=None, automatic=False, chrome=False, mozilla=False, most_likely=False, getlist=False):
@@ -99,6 +98,7 @@ class Info(Platform):
 				profile = directory
 			else:
 				profile = self.get_most_likely_subdir(directory)
+				print(f"DEBUG: profile: {profile}")
 			# Check if chrome:
 			if os.path.isfile(f"{profile}/Cookies"):
 				chrome_profiles.append(profile)
@@ -125,8 +125,6 @@ class Info(Platform):
 			platform = self.platform
 		if not user:
 			user = self.username
-		print(f"DEBUG: platform: {platform}")
-		print(f"DEBUG: user: {user}")
 		if platform == 'Windows':
 			if not browser_name:
 				roaming = f"C:/Users/{user}/AppData/Roaming"
