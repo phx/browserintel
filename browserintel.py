@@ -65,7 +65,7 @@ def get_data(browser_dict: dict, cookies=None, logins=False, history=False, mast
 		filename = get_filename(profile, chrome=True)
 		if cookies:
 			div()
-			warn("Chrome cookie data only available with '-L'")
+			warn("Chrome cookie data only sometimes available with '-A'")
 		if logins:
 			div()
 			db_orig = os.path.join(profile, 'Login Data')

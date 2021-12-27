@@ -132,6 +132,8 @@ class Info(Platform):
 				default_chromedev_dir = None
 				default_chromium_dir = f"{local_appdata}/Chromium/User Data"
 				default_firefox_dir = f"{roaming}/Mozilla/Firefox/Profiles"
+				default_palemoon_dir = f"{roaming}/Moonchild Production/Pale Moon/Profiles"
+				default_waterfox_dir = f"{roaming}/Waterfox/Profiles"
 		elif platform == 'Darwin':
 			if not browser_name:
 				application_support = f"/Users/{user}/Library/Application Support"
@@ -141,6 +143,8 @@ class Info(Platform):
 				default_chromecanary_dir = f"{application_support}/Google/Chrome Canary"
 				default_chromium_dir = f"{application_support}/Chromium"
 				default_firefox_dir = f"{application_support}/Firefox/Profiles"
+				default_palemoon_dir = f"{application_support}/Moonchild Production/Pale Moon/Profiles"
+				default_waterfox_dir = f"{application_support}/Waterfox/Profiles"
 		elif platform == 'Linux':
 			if not browser_name:
 				if os.getenv('CHROME_CONFIG_HOME'):
@@ -154,12 +158,14 @@ class Info(Platform):
 				default_chromecanary_dir = None
 				default_chromedev_dir = f"{config_dir}/google-chrome-unstable"
 				default_chromium_dir = f"{config_dir}/chromium"
-				default_firefox_dir = f"/home/{user}/.mozilla/firefox"
+				default_firefox_dir = f"/home/{user}/.mozilla/firefox/Profiles"
+				default_palemoon_dir = f"/home/{user}/.moonchild production/pale moon/Profiles"
+				default_waterfox_dir = f"/home/{user}/.waterfox/Profiles"
 		else:
 			return None
 		directories = [
 			default_chrome_dir, default_chromebeta_dir, default_chromedev_dir, default_chromecanary_dir,
-		    default_chromium_dir, default_firefox_dir
+		    default_chromium_dir, default_firefox_dir, default_palemoon_dir, default_waterfox_dir
 		]
 		browser_dict = {
 			'chrome': {'default_chrome_dir': default_chrome_dir,
@@ -167,7 +173,9 @@ class Info(Platform):
 			           'default_chromedev_dir': default_chromedev_dir,
 			           'default_chromecanary_dir': default_chromecanary_dir,
 			           'defaultdefault_chromium_dir': default_chromium_dir},
-			'mozilla': {'default_firefox_dir': default_firefox_dir}
+			'mozilla': {'default_firefox_dir': default_firefox_dir,
+			            'default_palemoon_dir': default_palemoon_dir,
+			            'default_waterfox_dir': default_waterfox_dir}
 		}
 		existing_browser_paths = self.get_existing_paths(directories)
 		if listbrowsers:
