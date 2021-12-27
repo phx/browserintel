@@ -60,6 +60,6 @@ You can then just `rm -rf ~/results`, and run the bash script normally without t
 - [Potentially] add support for additional browsers
 - Add local support for more architectures
 
-### Troubleshooting
+### Troubleshooting:
 
 For troubleshooting, please submit an issue.
