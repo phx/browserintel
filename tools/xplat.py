@@ -72,6 +72,7 @@ class Info(Platform):
 
 	@staticmethod
 	def get_existing_paths(paths: list) -> list:
+		print(f"DEBUG: PATHS: {paths}")
 		paths = [path for path in paths if path]
 		existing_paths = []
 		for path in paths:
@@ -89,8 +90,6 @@ class Info(Platform):
 		profiles = {}
 		profile_list = []
 		for directory in directories:
-			if not directory:
-				continue
 			if is_profile:
 				profile = directory
 			else:
@@ -167,10 +166,7 @@ class Info(Platform):
 			           'defaultdefault_chromium_dir': default_chromium_dir},
 			'mozilla': {'default_firefox_dir': default_firefox_dir}
 		}
-		for k, v in browser_dict.items():
-			for _, i in v.items():
-				if not i:
-					del v
+		directories = [directory for directory in directories if directory]
 		print(browser_dict)
 		existing_browser_paths = self.get_existing_paths(directories)
 		if listbrowsers:
