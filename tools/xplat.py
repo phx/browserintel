@@ -91,7 +91,6 @@ class Info(Platform):
 		mozilla_profiles = []
 		profiles = {}
 		profile_list = []
-		print(f"DEBUG: directories: {directories}")
 		directories = [directory for directory in directories if directory]
 		for directory in directories:
 			if is_profile:
@@ -99,13 +98,11 @@ class Info(Platform):
 			else:
 				profile = self.get_most_likely_subdir(directory)
 			# Check if chrome:
-			if os.path.isfile(f"{profile}/Cookies"):
+			if os.path.isfile(f"{profile}/History"):
 				chrome_profiles.append(profile)
 				profile_list.append(profile)
-			else:
-				print('Cookies dont exist')
 			# Check if mozilla:
-			if os.path.isfile(f"{profile}/cookies.sqlite"):
+			if os.path.isfile(f"{profile}/places.sqlite"):
 				mozilla_profiles.append(profile)
 				profile_list.append(profile)
 		if getlist:
@@ -172,8 +169,6 @@ class Info(Platform):
 			           'defaultdefault_chromium_dir': default_chromium_dir},
 			'mozilla': {'default_firefox_dir': default_firefox_dir}
 		}
-		directories = [directory for directory in directories if directory]
-		print(browser_dict)
 		existing_browser_paths = self.get_existing_paths(directories)
 		if listbrowsers:
 			return existing_browser_paths   # list
