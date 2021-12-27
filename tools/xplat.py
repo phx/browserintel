@@ -89,6 +89,8 @@ class Info(Platform):
 		profiles = {}
 		profile_list = []
 		for directory in directories:
+			if not directory:
+				continue
 			if is_profile:
 				profile = directory
 			else:
