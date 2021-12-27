@@ -165,6 +165,10 @@ class Info(Platform):
 			           'defaultdefault_chromium_dir': default_chromium_dir},
 			'mozilla': {'default_firefox_dir': default_firefox_dir}
 		}
+		for k, v in browser_dict.items():
+			for _, i in v.items():
+				if not i:
+					del v
 		existing_browser_paths = self.get_existing_paths(directories)
 		if listbrowsers:
 			return existing_browser_paths   # list
