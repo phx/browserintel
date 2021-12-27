@@ -1,9 +1,20 @@
 import os
 import shutil
+import sys
 from pathlib import Path
+
 
 def is_readable_file(path) -> bool:
 	return os.path.isfile(path) and os.access(path, os.R_OK)
+
+
+def err(msg: str):
+	print(f"[ERROR] {msg}")
+	sys.exit(os.EX_SOFTWARE)
+
+
+def warn(msg: str):
+	print(f"[WARNING] {msg}")
 
 
 def ls(path, files=False, directories=False) -> list:
@@ -35,6 +46,14 @@ def getdirsize(path) -> int:
 		sizes.append(f.stat().st_size)
 	bytes = sum(sizes)
 	return bytes
+
+
+def get_terminal_size() -> int:
+	try:
+		terminal_size = os.get_terminal_size().columns
+	except OSError:
+		terminal_size = 100
+	return terminal_size
 
 
 def is_installed(required_software: list) -> bool:
