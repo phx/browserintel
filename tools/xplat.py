@@ -122,9 +122,10 @@ class Info(Platform):
 			platform = self.platform
 		if not user:
 			user = self.username
+		print(f"DEBUG: platform: {platform}")
+		print(f"DEBUG: user: {user}")
 		if platform == 'Windows':
 			if not browser_name:
-				print(f"DEBUG: platform: {platform}")
 				roaming = f"C:/Users/{user}/AppData/Roaming"
 				local_appdata = f"C:/Users/{user}/AppData/Local"
 				default_chrome_dir = f"{local_appdata}/Google/Chrome/User Data"
