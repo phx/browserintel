@@ -98,11 +98,12 @@ class Info(Platform):
 				profile = directory
 			else:
 				profile = self.get_most_likely_subdir(directory)
-				print(f"DEBUG: profile: {profile}")
 			# Check if chrome:
 			if os.path.isfile(f"{profile}/Cookies"):
 				chrome_profiles.append(profile)
 				profile_list.append(profile)
+			else:
+				print('Cookies dont exist')
 			# Check if mozilla:
 			if os.path.isfile(f"{profile}/cookies.sqlite"):
 				mozilla_profiles.append(profile)
@@ -120,7 +121,6 @@ class Info(Platform):
 		return profiles                 # dict
 
 	def get_browser(self, platform=None, user=None, browser_name=None, listbrowsers=False, getprofile=False, most_likely=False):
-		print(f"DEBUG: in get_browser()...")
 		if not platform:
 			platform = self.platform
 		if not user:
