@@ -117,12 +117,14 @@ class Info(Platform):
 		return profiles                 # dict
 
 	def get_browser(self, platform=None, user=None, browser_name=None, listbrowsers=False, getprofile=False, most_likely=False):
+		print(f"DEBUG: in get_browser()...")
 		if not platform:
 			platform = self.platform
 		if not user:
 			user = self.username
 		if platform == 'Windows':
 			if not browser_name:
+				print(f"DEBUG: platform: {platform}")
 				roaming = f"C:/Users/{user}/AppData/Roaming"
 				local_appdata = f"C:/Users/{user}/AppData/Local"
 				default_chrome_dir = f"{local_appdata}/Google/Chrome/User Data"
