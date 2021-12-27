@@ -75,12 +75,12 @@ class Info(Platform):
 
 	@staticmethod
 	def get_existing_paths(paths: list) -> list:
-		print(f"DEBUG: PATHS: {paths}")
 		paths = [path for path in paths if path]
 		existing_paths = []
 		for path in paths:
 			if os.path.exists(path):
 				existing_paths.append(path)
+		print(f"DEBUG: existing_paths: {existing_paths}")
 		return existing_paths
 
 	def get_profiles(self, directories=None, is_profile=None, automatic=False, chrome=False, mozilla=False, most_likely=False, getlist=False):
