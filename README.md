@@ -2,44 +2,50 @@
 
 **Dependencies:**
 
-- Bash (not `sh`)
 - Python3
 
-This entire suite of utilities is designed to be run from the `browserintel.sh` bash script, thus it requires Linux or MacOS (it is untested with Cygwin or Git-bash).
+This entire suite of utilities is designed to be run from the `browserintel.py` script, thus it requires a working Python3 environment with native libraries (it is untested with native Windows Python or Git-bash).
 
-I am probably going to rewrite this in Python3 so that it will be cross-compatible on Windows, because there are a few aspects where it could prove very useful when run on a Windows host.
-
-Please note that for Chrome encrypted data to be decrypted, you will need to be running this locally on the host where the data resides and know the password.
+Please note that for Chrome encrypted data to be decrypted, you will need to be running this locally on the host where the data resides and know the password (use the `-A` flag).
 
 This is not the case for Firefox encrypted data, which can be decrypted remotely.
 
 I am not going to fully-document everything yet until this is complete, but I will simply provide the usage output for now:
 
 ```
-Usage: ./browserintel.sh <-P [platform]> <-u [username]> <-b [browser]> [options]
-Options (strings):
-  -u | --user		username	[-u username] (optional)				Default: user
-  -p | --pass		password to decrypt any encrypted data [-p password] (optional)		Default: [None]
-  -b | --browser	browser name	[-b chrome|firefox|palemoon|waterfox] (optional) 	Default: chrome
-  -B | --browser-dir	browser dir	[-B /path/to/browser_dir] (not necessary for -h, -l, or -c)
-  -S | --profile	specific profile (if -S is specified, that profile will be used. Automatically detected with '-B')
-  -P | --platform	platform type	[-P win32|win64|linux|darwin] (optional - requires -L)	Default: [None]
-  -f | --history	history file	[-h '/path/to/history_db']
-  -l | --logindata	login data file	[-l '/path/to/logindata_db']
-  -c | --cookies	cookies file	[-c '/path/to/cookies_db']
-  -h | --help		display this help text and exit
+usage: browserintel.py [-h] [-u USERNAME] [-p MASTER_PASSWORD] [-b BROWSER_DIR] [-pp PROFILE_DIR] [-cp COOKIES_PATH] [-hp HISTORY_PATH] [-lp LOGINS_PATH] [-A] [-C] [-H] [-L]
 
-Options (boolean):
-  -A | --all		get local data from all browsers (requires -L and -P)			Default: False
-  -C | --cookies-true	get cookies	[-B '/path/to/browser_dir' -C]				Default: False
-  -D | --logindata-true get login data	[-B '/path/to/browser_dir' -L]				Default: False
-  -H | --history-true	get history	[-B '/path/to/browser_dir' -H]				Default: False
-  -L | --local		get data from localhost (requires authentication) [-P platform -L]	Default: False
+Gather data from various browser sqlite databases
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+String options:
+  -u USERNAME, --user USERNAME
+                        set the username for output directory
+  -p MASTER_PASSWORD, --masterpass MASTER_PASSWORD
+                        master password to use if Mozilla browser data is encrypted
+  -b BROWSER_DIR, --browserdir BROWSER_DIR
+                        path to main browser directory to search
+  -pp PROFILE_DIR, --profile-path PROFILE_DIR
+                        path to specific profile directory to search
+  -cp COOKIES_PATH, --cookies-path COOKIES_PATH
+                        path to cookies database
+  -hp HISTORY_PATH, --history-path HISTORY_PATH
+                        path to history database
+  -lp LOGINS_PATH, --logins-path LOGINS_PATH
+                        path to logins database
+
+Boolean options:
+  -A, --all             Attempt to gather all data from all installed browsers (except for IE)
+  -C, --cookies         attempt to gather cookies information
+  -H, --history         attempt to gather history information
+  -L, --logins          attempt to gather login information
 ```
 
 ## Important note about AV Detection:
 
-If deployed on a Windows host, the Go binaries may trigger AV, so you have been warned.
+If deployed on a Windows host, the Go binaries may trigger AV in certain cases, so you have been warned.
 
 ## Runnng on MacOS:
 
