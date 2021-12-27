@@ -13,6 +13,9 @@ class Platform:
 		self.platform = platform.system() # Linux, Darwin, or Windows
 		self.release = platform.release()
 
+		if 'CYGWIN' in platform.system():
+			self.platform = 'Windows'
+
 
 class Info(Platform):
 	def __init__(self):
