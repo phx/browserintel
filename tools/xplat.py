@@ -13,12 +13,6 @@ class Platform:
 		self.release = platform.release()
 		self.arm = None
 		self.python = sys.executable
-		self.version = float(platform.python_version()[0:3])
-		self.target_version = 3.6
-
-		if self.target_version > self.version:
-			print('This script requires Python >=' + str(self.target_version))
-			sys.exit(os.EX_SOFTWARE)
 
 		if 'CYGWIN' in platform.system():
 			self.platform = 'Windows'
