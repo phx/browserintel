@@ -5,13 +5,13 @@
 
 # browserintel
 
-This entire suite of utilities is designed to be run from the `browserintel.py` script, thus it requires a working Python3 environment with native libraries (it is untested with native Windows Python or Git-bash).
+This entire suite of utilities is designed to be run from the `browserintel.py` script, thus it requires a working Python3 environment with native libraries.
 
-Please note that for Chrome encrypted data to be decrypted, you will need to be running this locally on the host where the data resides and know the password (use the `-A` flag).
+Please note that for Chrome encrypted data to be decrypted, you will need to use the `-A` flag and must be running this locally on the host where the data resides (and know the login password in the case of MacOS).
 
-This is not the case for Firefox encrypted data, which can be decrypted remotely.
+This is not the case for Firefox data, which is unencrypted most of the time, but can be decrypted on a different machine if you know the password it was encrypted with (`-p [MASTER PASSWORD]`).
 
-I am not going to fully-document everything yet until this is complete, but I will simply provide the usage output for now:
+## Usage
 
 ```
 usage: browserintel.py [-h] [-u USERNAME] [-p MASTER_PASSWORD] [-b BROWSER_DIR] [-pp PROFILE_DIR] [-cp COOKIES_PATH] [-hp HISTORY_PATH] [-lp LOGINS_PATH] [-A] [-C] [-H] [-L]
