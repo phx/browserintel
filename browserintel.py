@@ -136,6 +136,14 @@ def get_data(browser_dict: dict, cookies=None, logins=False, history=False, mast
 
 
 if __name__ == '__main__':
+	# Check for Python >=3.6:
+	target_version = 3.6
+	python_version = float(platform.python_version()[0:3])
+
+	if python_version < target_version:
+		print('This script requires Python >=' + str(self.target_version))
+		sys.exit(os.EX_SOFTWARE)
+
 	# Parse arguments:
 	parser = argparse.ArgumentParser(add_help=True, description='Gather data from various browser sqlite databases')
 	string_group = parser.add_argument_group('String options')
