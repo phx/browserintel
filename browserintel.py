@@ -12,7 +12,7 @@ from tools.xplat import Info
 foo = "bar"
 try:
 	eval('bar = f"foo{foo}"')
-except SyntaxError:
+except:
 	print('Please make sure you are running python v3.6+')
 	sys.exit(os.EX_SOFTWARE)
 
