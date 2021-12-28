@@ -11,7 +11,7 @@ from tools.xplat import Info
 # Make sure Python >=v3.6:
 foo = "bar"
 try:
-	eval('bar = f"foo{foo}"')
+	bar = f"foo{foo}"
 except:
 	print('Please make sure you are running python v3.6+')
 	sys.exit(os.EX_SOFTWARE)
