@@ -9,12 +9,8 @@ from tools.utils import *
 from tools.xplat import Info
 
 # Make sure Python >=v3.6:
-foo = "bar"
-try:
-	bar = f"foo{foo}"
-except:
-	print('Please make sure you are running python v3.6+')
-	sys.exit(os.EX_SOFTWARE)
+check_python_version = "hacky workaround"
+if_you_see_this_message = f"YOU ARE NOT RUNNING Python 3.6+ {check_python_version}"
 
 # Change to script directory:
 script_path = os.path.dirname(os.path.abspath(__file__))
