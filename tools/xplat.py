@@ -1,5 +1,4 @@
 import getpass
-import pwd
 import platform
 import struct
 
@@ -21,9 +20,17 @@ class Info(Platform):
 	def __init__(self):
 		super().__init__()
 		self.uid = os.getuid()
-		self.username = getpass.getuser()
-		self.username_alt = pwd.getpwuid(os.getuid()).pw_name
 		self.home = self.get_user_home_dir()
+		self.username = self.get_username()
+
+	def get_username(self):
+		if self.platform == 'Windows':
+			self.username = os.getenv('USERNAME')
+		else:
+			import pwd
+			self.username = getpass.getuser()
+			# self.username_alt = pwd.getpwuid(os.getuid()).pw_name
+		return self.username
 
 	def get_user_home_dir(self, user=None):
 		if not user:
