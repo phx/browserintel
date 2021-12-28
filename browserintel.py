@@ -112,20 +112,6 @@ def get_data(browser_dict: dict, cookies=None, logins=False, history=False, mast
 				print(f"Cookies for profile {profile}:\n")
 				with open(cookies_file, 'r') as f:
 					print(f.read())
-		if logins:
-			div()
-			ffdecrypt_profiles = os.popen(f'python3 "{script_path}/tools/firefox_decrypt/firefox_decrypt.py" -l').read()
-			for line in ffdecrypt_profiles.split('\n'):
-				if profile_name in line:
-					profile_number = line.split(' ')[0]
-			logins_file = f"{loot_dir}/{filename}_logins.csv"
-			login_output = os.popen(f'echo {masterpass} | python3 "{script_path}/tools/firefox_decrypt/firefox_decrypt.py" -nc {profile_number} --format csv --csv-delimiter ","').read()
-			print(f"Login data for profile {profile}:\n")
-			with open(logins_file, 'w') as f:
-				f.write(login_output)
-			if delete_if_empty(logins_file):
-				print(login_output)
-			del login_output
 		if history:
 			div()
 			db_orig = os.path.join(profile, 'places.sqlite')
@@ -137,6 +123,16 @@ def get_data(browser_dict: dict, cookies=None, logins=False, history=False, mast
 				print(f"History data for profile {profile}:\n")
 				with open(history_file, 'r') as f:
 					print(f.read())
+		if logins:
+			div()
+			logins_file = f"{loot_dir}/{filename}_logins.csv"
+			login_output = os.popen(f'echo {masterpass} | python3 "{script_path}/tools/firefox_decrypt/firefox_decrypt.py" "{profile}" -n --format csv --csv-delimiter ","').read()
+			print(f"Login data for profile {profile}:\n")
+			with open(logins_file, 'w') as f:
+				f.write(login_output)
+			if delete_if_empty(logins_file):
+				print(login_output)
+			del login_output
 
 
 if __name__ == '__main__':
