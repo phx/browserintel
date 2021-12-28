@@ -19,18 +19,18 @@ class Platform:
 class Info(Platform):
 	def __init__(self):
 		super().__init__()
-		self.uid = os.getuid()
-		self.home = self.get_user_home_dir()
-		self.username = self.get_username()
 
-	def get_username(self):
 		if self.platform == 'Windows':
 			self.username = os.getenv('USERNAME')
+			self.uid = 0
 		else:
+			self.uid = os.getuid()
 			import pwd
 			self.username = getpass.getuser()
-			# self.username_alt = pwd.getpwuid(os.getuid()).pw_name
-		return self.username
+			self.username_alt = pwd.getpwuid(os.getuid()).pw_name
+
+		self.home = self.get_user_home_dir()
+		self.appdata = self.get_appdata_dir()
 
 	def get_user_home_dir(self, user=None):
 		if not user:
