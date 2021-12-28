@@ -17,15 +17,16 @@ class Platform:
 		if 'CYGWIN' in platform.system():
 			self.platform = 'Windows'
 
-		platform_details = [os.machine(), platform.platform(), os.uname(), os.version()]
-		arm64_flags = ['arm64', 'ARM64', 'arm-64', 'ARM-64']
-		if 'arm' in platform_details or 'ARM' in platform_details:
-			for flag in arm64_flags:
-				if flag in platform_details:
-					self.arm = 'arm64'
-					break
-			if not self.arm:
-				self.arm = 'arm'
+		if self.platform == 'Linux':
+			platform_details = [platform.machine(), platform.platform(), os.uname(), os.version()]
+			arm64_flags = ['arm64', 'ARM64', 'arm-64', 'ARM-64']
+			if 'arm' in platform_details or 'ARM' in platform_details:
+				for flag in arm64_flags:
+					if flag in platform_details:
+						self.arm = 'arm64'
+						break
+				if not self.arm:
+					self.arm = 'arm'
 
 class Info(Platform):
 	def __init__(self):
