@@ -9,9 +9,9 @@ from tools.utils import *
 from tools.xplat import Info
 
 # Make sure Python >=v3.6:
+foo = "bar"
 try:
-	foo = "bar"
-	bar = f"foo{foo}"
+	eval('bar = f"foo{foo}"')
 except SyntaxError:
 	print('Please make sure you are running python v3.6+')
 	sys.exit(os.EX_SOFTWARE)
