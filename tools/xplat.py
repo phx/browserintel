@@ -18,7 +18,7 @@ class Platform:
 			self.platform = 'Windows'
 
 		if self.platform == 'Linux':
-			platform_details = [platform.machine(), platform.platform(), os.uname(), os.version()]
+			platform_details = [platform.machine(), platform.platform(), os.uname(), platform.version()]
 			arm64_flags = ['arm64', 'ARM64', 'arm-64', 'ARM-64']
 			if 'arm' in platform_details or 'ARM' in platform_details:
 				for flag in arm64_flags:
